@@ -62,7 +62,12 @@ class LibnameConan(ConanFile):
         cmake.install()
 
     def package_info(self):
-        self.cpp_info.libs = ["xerces-c"]
+        version_tokens = self.version.split(".")
+        if self.settings.os == "Windows":
+            self.cpp_info.libs = ["xerces-c_%s" % version_tokens[0]]
+        else:
+            self.cpp_info.libs = ["xerces-c" if self.options.shared else
+                                  ("xerces-c-%s.%s" % (version_tokens[0], version_tokens[1]))]
         if self.settings.os == "Macos":
             frameworks = ['CoreFoundation', 'CoreServices']
             for framework in frameworks:
