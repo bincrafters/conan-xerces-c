@@ -4,7 +4,7 @@ project(cmake_wrapper)
 include(conanbuildinfo.cmake)
 conan_basic_setup()
 
-if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
   add_definitions("-Wno-cast-qual")
   add_definitions("-Wno-ctor-dtor-privacy")
   add_definitions("-Wno-switch-default")
