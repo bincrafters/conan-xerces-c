@@ -4,7 +4,7 @@ project(cmake_wrapper)
 include(conanbuildinfo.cmake)
 conan_basic_setup()
 
-if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
   add_definitions("-Wno-cast-qual")
   add_definitions("-Wno-ctor-dtor-privacy")
   add_definitions("-Wno-switch-default")
@@ -14,6 +14,9 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQ
   add_definitions("-Wno-nonnull-compare")
   add_definitions("-Wno-missing-declarations")
   add_definitions("-Wno-implicit-fallthrough")
+endif()
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+  add_definitions("-Wno-cast-qual")
 endif()
 
 add_subdirectory("source_subfolder")
