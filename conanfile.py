@@ -63,11 +63,13 @@ class LibnameConan(ConanFile):
 
     def package_info(self):
         version_tokens = self.version.split(".")
-        if self.settings.os == "Windows":
+        if self.settings.compiler == "Visual Studio":
             lib = "xerces-c_%s" % version_tokens[0]
             if self.settings.build_type == "Debug":
                 lib += "d"
             self.cpp_info.libs = [lib]
+        elif self.settings.os == "Windows" and self.settings.compiler == "gcc":
+            self.cpp_info.libs = ["xerces-c"]
         else:
             self.cpp_info.libs = ["xerces-c" if self.options.shared else
                                   ("xerces-c-%s.%s" % (version_tokens[0], version_tokens[1]))]
