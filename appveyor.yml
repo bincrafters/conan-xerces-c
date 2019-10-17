@@ -5,7 +5,9 @@ environment:
 
     matrix:
         - MINGW_CONFIGURATIONS: "8@x86@dwarf2@posix"
+          CONAN_ARCHS: x86
         - MINGW_CONFIGURATIONS: "8@x86_64@seh@posix"
+          CONAN_ARCHS: x86_64
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           CONAN_VISUAL_VERSIONS: 14
           CONAN_BUILD_TYPES: Debug
