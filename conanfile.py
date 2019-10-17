@@ -63,7 +63,7 @@ class LibnameConan(ConanFile):
 
     def package_info(self):
         version_tokens = self.version.split(".")
-        if self.settings.os == "Windows":
+        if self.settings.compiler == "Visual Studio":
             lib = "xerces-c_%s" % version_tokens[0]
             if self.settings.build_type == "Debug":
                 lib += "d"
