@@ -68,6 +68,8 @@ class LibnameConan(ConanFile):
             if self.settings.build_type == "Debug":
                 lib += "d"
             self.cpp_info.libs = [lib]
+        elif self.settings.os == "Windows" and self.settings.compiler == "gcc":
+            self.cpp_info.libs = ["xerces-c"]
         else:
             self.cpp_info.libs = ["xerces-c" if self.options.shared else
                                   ("xerces-c-%s.%s" % (version_tokens[0], version_tokens[1]))]
